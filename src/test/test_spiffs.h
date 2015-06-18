@@ -7,7 +7,7 @@
 
 #ifndef TEST_SPIFFS_H_
 #define TEST_SPIFFS_H_
-
+#include "params_test.h"
 #include "spiffs.h"
 
 #define FS &__fs
