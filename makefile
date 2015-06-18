@@ -8,6 +8,7 @@ BINARY = linux_spiffs_test
 
 sourcedir = src
 builddir = build
+test_data_dir = test_data
 
 
 #############
@@ -92,7 +93,7 @@ all: mkdirs $(BINARY)
 
 mkdirs:
 	-@${MKDIR} ${builddir}
-	-@${MKDIR} test_data
+	-@${MKDIR} ${test_data_dir}
 
 FILTER ?=
 
@@ -107,7 +108,8 @@ test_failed: $(BINARY)
 		./build/$(BINARY) _tests_fail
 	
 clean:
-	@echo ... removing build files in ${builddir}
-	@rm -f ${builddir}/*.o
-	@rm -f ${builddir}/*.d
-	@rm -f ${builddir}/*.elf
+	@echo ... removing build files and test files
+	@rm -fvrd ${builddir}
+	@rm -fvrd ${test_data_dir}
+	@rm -f _tests_ok
+	@rm -f _tests_fail
